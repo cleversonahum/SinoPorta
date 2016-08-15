@@ -1,0 +1,11 @@
+<ion-view view-title="Portas">
+  <ion-content>
+    <ion-list>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in chats" type="item-text-wrap">
+        <img ng-src="{{chat.doorIsOpen==true?'img/open_door.png':'img/close_door.png'}}">
+        <h2>{{chat.name}}</h2>
+        <p>{{chat.doorIsOpen==true?'Porta Aberta':'Porta Fechada'}}</p>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,25 @@
+<ion-view view-title="Configurações">
+  <ion-content>
+  <ion-list>
+    <ion-list ng-repeat="chat in chats">
+      <div class="card">
+        <div class="item item-text-wrap">
+          <h2>{{chat.name}}</h2>
+          <h2>{{chat.urlApi}}</h2>
+        </div>
+      </div>
+    </ion-list>
+
+    <div class="list">
+      <label class="item item-input">
+        <input type="text" placeholder="Nome da Porta" ng-model="addData.name">
+      </label>
+      <label class="item item-input">
+        <input type="text" placeholder="Url da API" ng-model="addData.urlApi">
+      </label>
+      <button class="button button-block button-positive" ng-click="addDoor()">
+        Cadastrar Nova Porta
+      </button>
+    </div>
+  </ion-content>
+</ion-view>
