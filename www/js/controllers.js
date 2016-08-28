@@ -2,29 +2,55 @@ angular.module('starter.controllers', [])
 
 .controller('DashCtrl', function ($scope) {})
 
-.controller('ChatsCtrl', function ($scope, Chats) {
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
+.controller('ChatsCtrl', function ($scope, $http, $window) {
+  var getPortas = function () {
+    $http.get('http://localhost:3000/portas/')
+      .success(function (data, status) {
+        $scope.chats = data;
+      })
+      .error(function (data, status) {
+      });
+  }
+  $scope.reload = function () {
+        $window.location.reload();
+    };
 
-  $scope.chats = Chats.all();
+  $scope.remove = function (chat) {
+    $http.post("http://localhost:3000/delporta", {name: chat.name}).success(function(data, status) {
+      $scope.reload();
+        });
+  };
+
+
+  getPortas();
 })
 
 
-.controller('AccountCtrl', function ($scope, Chats) {
-  $scope.chats = Chats.all();
-  $scope.addName = 'teste';
-  $scope.addUrl = 'teste';
-  $scope.addData = {
-      name: $scope.addName,
-      doorIsOpen: false,
-      urlApi: $scope.addUrl
+.controller('AccountCtrl', function ($scope, $http,$window) {
+  var getPortas = function () {
+    $http.get('http://localhost:3000/portas/')
+      .success(function (data, status) {
+        $scope.chats = data;
+      })
+      .error(function (data, status) {
+      });
+  }
+
+  $scope.reload = function () {
+        $window.location.reload();
     };
+
   $scope.addDoor = function () {
-    //chama a função que adiciona no BD
+    $http.post("http://localhost:3000/addporta", $scope.addData).success(function(data, status) {
+      $scope.reload();
+        });
+  };
+  getPortas();
+  $scope.addName = '';
+  $scope.urlApi = '';
+  $scope.addData = {
+    name: $scope.addName,
+    status: false,
+    endPorta: $scope.urlApi
   };
 });
