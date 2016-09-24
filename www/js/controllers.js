@@ -47,10 +47,8 @@ angular.module('starter.controllers', [])
   };
   getPortas();
   $scope.addName = '';
-  $scope.urlApi = '';
   $scope.addData = {
     name: $scope.addName,
-    status: false,
-    endPorta: $scope.urlApi
+    status: false
   };
 });
